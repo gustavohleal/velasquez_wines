@@ -1,7 +1,7 @@
 const express = require('express');
 
 const ClientController = require('./controllers/ClientController');
-const ShoppingController = require('./controllers/ShoppingController');
+const PurchasesController = require('./controllers/PurchasesController');
 const routes = express.Router();
 
 
@@ -9,10 +9,12 @@ routes.get('/clients', ClientController.index);
 
 routes.get('/clients/:id', ClientController.getClient);
 
-routes.get('/clientsOrdered', ClientController.getOrderedClients);
+routes.get('/clients/OrderedByPurchase', PurchasesController.getOrderedClientsByHigherValue);
 
-routes.get('/buys', ShoppingController.index);
+routes.get('/purchases', PurchasesController.index);
 
-routes.get('/buys/:id', ShoppingController.getClientShoppings);
+routes.get('/purchases/:id', PurchasesController.getClientPurchases);
+
+routes.get('/purchases/higherYear/:year', PurchasesController.getHigherPurchaseYear);
 
 module.exports = routes;

@@ -16,14 +16,5 @@ module.exports = {
         console.log(client);
 
         return res.json(client);
-    },
-
-    async getOrderedClients ( req, res ) {
-        const shoppingList = await requests.listBuys();
-        const clientList = await requests.listClients();
-        
-        const orderedClients = ClientService.orderClient(clientList, shoppingList);
-        //console.log(orderedClients)
-        return res.json(orderedClients);
     }
 }
