@@ -13,8 +13,12 @@ routes.get('/clients/OrderedByPurchase', PurchasesController.getOrderedClientsBy
 
 routes.get('/purchases', PurchasesController.index);
 
-routes.get('/purchases/:id', PurchasesController.getClientPurchases);
+
 
 routes.get('/purchases/higherYear/:year', PurchasesController.getHigherPurchaseYear);
+
+routes.get('/purchases/faithfulness', PurchasesController.getMostFaithfulClients);
+
+routes.get('/purchases/:id', PurchasesController.getClientPurchases);
 
 module.exports = routes;
