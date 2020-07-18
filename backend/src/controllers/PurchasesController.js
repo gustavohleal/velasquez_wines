@@ -8,11 +8,11 @@ module.exports = {
 
         const purchasesHist = await requests.purchasesHist();
 
-        if(purchasesHist.isAxiosError){
-            return res.status(purchasesHist.response.status).send('Error getting purchase hist');
+        if ( purchasesHist.isAxiosError ){
+            return res.status ( purchasesHist.response.status ).send ( 'Error getting purchase hist' );
         }
 
-        return res.status(200).json(purchasesHist)
+        return res.status(200).json ( purchasesHist );
 
     },
 
@@ -23,11 +23,11 @@ module.exports = {
 
         const purchasesHist = await requests.purchasesHist ();
 
-        if(purchasesHist.isAxiosError){
-            return res.status(purchasesHist.response.status).send('Error getting purchase hist');
+        if ( purchasesHist.isAxiosError ){
+            return res.status ( purchasesHist.response.status ).send ( 'Error getting purchase hist' );
         }
-        if(clientList.isAxiosError){
-            return res.status(clientList.response.status).send('Error getting client list');
+        if ( clientList.isAxiosError ){
+            return res.status ( clientList.response.status ).send ( 'Error getting client list' );
         }
 
         const client = getClientById ( Number ( id ), clientList );
@@ -43,11 +43,11 @@ module.exports = {
 
         const clientList = await requests.listClients ();
         
-        if(purchasesHist.isAxiosError){
-            return res.status(purchasesHist.response.status).send('Error getting purchase hist');
+        if ( purchasesHist.isAxiosError ){
+            return res.status ( purchasesHist.response.status ).send ( 'Error getting purchase hist' );
         }
-        if(clientList.isAxiosError){
-            return res.status(clientList.response.status).send('Error getting client list');
+        if ( clientList.isAxiosError ){
+            return res.status ( clientList.response.status ).send ( 'Error getting client list' );
         }
 
         const orderedClients = PurchasesService.orderClient ( clientList, purchasesHist );
@@ -58,16 +58,15 @@ module.exports = {
     async getHigherPurchaseYear ( req, res ) {
 
         const { year } = req.params;
-        console.log(year)
         const purchasesHist = await requests.purchasesHist ();
 
         const clientList = await requests.listClients ();
 
-        if(purchasesHist.isAxiosError){
-            return res.status(purchasesHist.response.status).send('Error getting purchase hist');
+        if ( purchasesHist.isAxiosError ){
+            return res.status ( purchasesHist.response.status ).send ( 'Error getting purchase hist' );
         }
-        if(clientList.isAxiosError){
-            return res.status(clientList.response.status).send('Error getting client list');
+        if ( clientList.isAxiosError ){
+            return res.status ( clientList.response.status ).send ( 'Error getting client list' );
         }
         return res.status(200).json ( PurchasesService.higherPurchaseYear ( year, purchasesHist, clientList ) );
 
@@ -77,14 +76,14 @@ module.exports = {
         const purchasesHist = await requests.purchasesHist ();
         const clientList = await requests.listClients ();
 
-        if(purchasesHist.isAxiosError){
-            return res.status(purchasesHist.response.status).send('Error getting purchase hist');
+        if ( purchasesHist.isAxiosError ){
+            return res.status ( purchasesHist.response.status ).send ( 'Error getting purchase hist' );
         }
-        if(clientList.isAxiosError){
-            return res.status(clientList.response.status).send('Error getting client list');
+        if ( clientList.isAxiosError ){
+            return res.status ( clientList.response.status ).send ( 'Error getting client list' );
         }
 
-        return res.status(200).json( PurchasesService.getMostFaithfulClients ( clientList, purchasesHist ) );
+        return res.status(200).json ( PurchasesService.getMostFaithfulClients ( clientList, purchasesHist ) );
     },
 
     async getWineRecomendation ( req, res ) {
@@ -95,15 +94,15 @@ module.exports = {
 
         const clientList = await requests.listClients ();
 
-        if(purchasesHist.isAxiosError){
-            return res.status(purchasesHist.response.status).send('Error getting purchase hist');
+        if ( purchasesHist.isAxiosError ){
+            return res.status ( purchasesHist.response.status ).send('Error getting purchase hist' );
         }
         if(clientList.isAxiosError){
-            return res.status(clientList.response.status).send('Error getting client list');
+            return res.status ( clientList.response.status ).send('Error getting client list' );
         }
         const client = getClientById(id, clientList);
-        
-        return res.status(200).json( PurchasesService.wineRecomendation(client, purchasesHist))
+
+        return res.status(200).json ( PurchasesService.wineRecomendation ( client, purchasesHist ))
 
 
     },
