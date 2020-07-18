@@ -1,5 +1,10 @@
 const axios = require('axios').default;
 const { fixCpfStr, removeSpecialCharacter } = require('./helper')
+
+if ( process.env.NODE_ENV === "dev"){
+    require('dotenv').config();
+}
+
 function trimCliente ( cliente ) {
         
     const cpf = fixCpfStr ( cliente );
@@ -9,7 +14,7 @@ function trimCliente ( cliente ) {
 module.exports = {
     async listClients () {
         try{
-            const response = await axios.get ( 'http://www.mocky.io/v2/598b16291100004705515ec5' )
+            const response = await axios.get ( process.env.CLIENT_LIST_URL )
             const clientList = response.data.map ( ( client ) => {
                 client.cpf = removeSpecialCharacter ( client.cpf );
                 return client;
@@ -22,7 +27,7 @@ module.exports = {
 
     async purchasesHist () {
         try{
-            const response = await axios.get('http://www.mocky.io/v2/598b16861100004905515ec7')
+            const response = await axios.get ( process.env.PURCHASE_HIST_URL )
 
             const purchaseHist = response.data.map ( ( purchase ) => {
                 purchase.cliente = trimCliente ( purchase.cliente );

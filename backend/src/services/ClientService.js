@@ -4,8 +4,10 @@ const { removeSpecialCharacter } = require('../Utils/helper');
 module.exports = {
 
     getClientById ( id, clientList ) {
-    
-        const client = clientList.find ( u => u.id === id );
+        const client = clientList.find ( u => {
+
+            return u.id === Number(id)} );
+
         return client;
     },
 

@@ -8,7 +8,7 @@ module.exports = {
         return res.json(clients)
     },
 
-    async getClient(req, res){
+    async getClientById(req, res){
         const { id } = req.params;
 
         const client = await ClientService.getClientById(Number(id))
